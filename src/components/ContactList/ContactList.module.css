@@ -1,0 +1,24 @@
+.contactList li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid white;
+  background: blur(10px);
+}
+
+.customBtn {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 1px white solid;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+.customBtn:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}

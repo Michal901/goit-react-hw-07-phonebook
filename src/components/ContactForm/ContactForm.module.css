@@ -1,0 +1,33 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto;
+  padding: 20px;
+}
+.contactForm div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+.contactForm input {
+  background-color: rgba(255, 255, 255, 0.59);
+  border: none;
+  border-radius: 15px;
+  padding: 0.25rem 0.5rem;
+}
+
+.addBtn {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 1px white solid;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+.addBtn:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
