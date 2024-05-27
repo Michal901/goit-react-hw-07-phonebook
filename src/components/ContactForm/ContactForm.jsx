@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-
 import styles from './ContactForm.module.css';
 
-const ContactForm = ({ contacts, addContact }) => {
+const ContactForm = ({ addContact }) => {
   const [nameValue, setNameValue] = useState('');
   const [numberValue, setNumberValue] = useState('');
 
@@ -12,16 +10,7 @@ const ContactForm = ({ contacts, addContact }) => {
     e.preventDefault();
     if (!nameValue.trim() || !numberValue.trim()) return;
 
-    const isDuplicate = contacts.some(
-      contact => contact.name.toLowerCase() === nameValue.toLowerCase()
-    );
-
-    if (isDuplicate) {
-      alert(`${nameValue} is already in contacts.`);
-      return;
-    }
-
-    const newContact = { id: nanoid(), name: nameValue, number: numberValue };
+    const newContact = { name: nameValue, phone: numberValue };
     addContact(newContact);
 
     setNameValue('');
@@ -42,11 +31,11 @@ const ContactForm = ({ contacts, addContact }) => {
         />
       </div>
       <div>
-        <label htmlFor="number">Number</label>
+        <label htmlFor="phone">Number</label>
         <input
           type="tel"
-          name="number"
-          id="number"
+          name="phone"
+          id="phone"
           value={numberValue}
           onChange={e => setNumberValue(e.target.value)}
           required
@@ -58,8 +47,9 @@ const ContactForm = ({ contacts, addContact }) => {
     </form>
   );
 };
+
 ContactForm.propTypes = {
-  contacts: PropTypes.array.isRequired,
   addContact: PropTypes.func.isRequired,
 };
+
 export default ContactForm;

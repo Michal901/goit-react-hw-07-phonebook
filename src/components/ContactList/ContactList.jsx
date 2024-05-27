@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
-
 import styles from './ContactList.module.css';
 
-const Contact = ({ contacts, onDeleteContact }) => {
+const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <ul className={styles.contactList}>
       {contacts.map(contact => (
         <li key={contact.id}>
           <p>
             <strong>{contact.name}: </strong>
-            {contact.number}
+            {contact.phone}
           </p>
           <button
             className={styles.customBtn}
@@ -23,9 +22,9 @@ const Contact = ({ contacts, onDeleteContact }) => {
   );
 };
 
-Contact.propTypes = {
+ContactList.propTypes = {
   contacts: PropTypes.array.isRequired,
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-export default Contact;
+export default ContactList;

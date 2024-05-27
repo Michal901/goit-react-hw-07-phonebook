@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
+  fetchContacts,
   addContact,
   deleteContact,
   setFilter,
@@ -14,27 +15,21 @@ export const App = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.contacts.filter);
+  const status = useSelector(state => state.contacts.status);
+  const error = useSelector(state => state.contacts.error);
 
   useEffect(() => {
-    const storedContacts = localStorage.getItem('contacts');
-    if (storedContacts) {
-      const parsedContacts = JSON.parse(storedContacts);
-      parsedContacts.forEach(contact => {
-        dispatch(addContact(contact));
-      });
+    if (status === 'idle') {
+      dispatch(fetchContacts());
     }
-  }, [dispatch]);
+  }, [status, dispatch]);
 
   const handleAddContact = newContact => {
     dispatch(addContact(newContact));
-    const updatedContacts = [...contacts, newContact];
-    localStorage.setItem('contacts', JSON.stringify(updatedContacts));
   };
 
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
-    const updatedContacts = contacts.filter(contact => contact.id !== id);
-    localStorage.setItem('contacts', JSON.stringify(updatedContacts));
   };
 
   const handleFilterChange = event => {
@@ -48,7 +43,9 @@ export const App = () => {
   return (
     <div className={styles.phonebook}>
       <h1>Phonebook</h1>
-      <ContactForm contacts={contacts} addContact={handleAddContact} />
+      {status === 'loading' && <p>Loading...</p>}
+      {status === 'failed' && <p>{error}</p>}
+      <ContactForm addContact={handleAddContact} />
       <h2>Contacts</h2>
       <Filter filterValue={filter} setFilterValue={handleFilterChange} />
       <ContactList
