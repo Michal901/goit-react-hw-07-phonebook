@@ -43,7 +43,7 @@ export const App = () => {
   return (
     <div className={styles.phonebook}>
       <h1>Phonebook</h1>
-      {status === 'loading' && <p>Loading...</p>}
+      {/* {status === 'loading' && <p>Loading...</p>} */}
       {status === 'failed' && <p>{error}</p>}
       <ContactForm addContact={handleAddContact} />
       <h2>Contacts</h2>
