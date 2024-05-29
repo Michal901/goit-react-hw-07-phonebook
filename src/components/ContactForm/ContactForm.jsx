@@ -30,6 +30,7 @@ const ContactForm = ({ addContact }) => {
           required
         />
       </div>
+
       <div>
         <label htmlFor="phone">Number</label>
         <input
